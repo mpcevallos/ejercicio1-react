@@ -3,7 +3,7 @@ import { getPosts } from "/Users/mariapaula/Documents/MasterThreePoints/Modulo-F
 import Post from "./post";
 
 function PostList() {
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState(null); 
   
   console.log("rendering posts!");
   
@@ -19,7 +19,7 @@ function PostList() {
         </div>
   );
   }
-
+  
   return (
     <div className="container-fluid bg-body-secondary me-4 pt-4 pb-5">
     <div className="row d-flex m-2">
