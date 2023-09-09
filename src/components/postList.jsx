@@ -5,7 +5,7 @@ import Post from "./post";
 function PostList() {
   const [posts, setPosts] = useState(null); 
   
-  console.log("rendering posts!");
+  console.log("Renderizando posts, en este momento se muestra el loading antes del mounting!");
   
   useEffect(() => {
   getPosts().then((posts) => setPosts(posts));
@@ -26,12 +26,11 @@ function PostList() {
       {posts.map((post, i) => (
         <Post
           key={i}
-          img={post.img}
-          time={post.time}
-          author={post.author}
-          likes={post.likes}
+          createdAt={post.createdAt}
+          autor={post.autor}
           text={post.text}
           comments={post.comments}
+          image={post.image}
         />
       ))}
     </div>
