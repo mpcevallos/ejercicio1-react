@@ -46,7 +46,7 @@ const posts = [
     time: "Hace 1 día",
     author: "@boots",
     likes: 100,
-    text: "Curabitur sodales tortor et rhoncus aliquam. Nunc finibus est sapien, vel vulputate tellus tincidunt non. Nullam fermentum tortor laoreet tincidunt semper. Pellentesque laoreet.",
+    text: "Curabitur sodales tortor et rhoncus aliquam. Nunc finibus est sapien, vel vulputate tellus tincidunt non. Nullam fermentum tortor laoreet tincidunt semper.",
     comments: "Comments (41)",
   },
 ];
@@ -54,7 +54,7 @@ const posts = [
 function PostList() {
   return (
     <div className="container-fluid bg-body-secondary me-4 pt-4 pb-5">
-    <div className="row d-flex m-5">
+    <div className="row d-flex m-2">
       {posts.map((post, i) => (
         <Post
           key={i}
