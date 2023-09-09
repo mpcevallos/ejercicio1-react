@@ -4,6 +4,6 @@ export function getPosts() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([...data.posts]);
-    }, 2000);
+    }, 3000);
   });
 }
