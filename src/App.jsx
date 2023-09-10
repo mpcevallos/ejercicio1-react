@@ -25,10 +25,9 @@ showProfile(showProfile);
       <br/>
       <NavBar showProfile={showProfile}/>
       <Filters
-      search={search}
       searchPost={searchPost}
       />
-      <PostList search={search} showProfile={showProfile} />
+      <PostList />
       </div>
     </>
   )
