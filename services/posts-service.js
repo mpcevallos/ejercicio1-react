@@ -1,9 +1,19 @@
 import data from "./posts.json";
 
-export function getPosts() {
+export function getPost() {
+  return fetch(
+    "https://globalmakermedia.blob.core.windows.net/core/misc/data.json"
+  )
+    .then((response) => response.json())
+    .then((data) => data.episodes);
+}
+
+export function getUser() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve([...data.posts]);
-    }, 3000);
+      resolve({
+        name: "John Doe",
+      });
+    }, 500);
   });
 }

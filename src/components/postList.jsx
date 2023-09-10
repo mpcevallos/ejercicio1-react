@@ -5,12 +5,19 @@ import Profile from "./profile";
 
 function PostList({ post, search, profile, showProfile }) {
   const [posts, setPosts] = useState(null); 
+  const [error, setError] = useState(null);
 
-  console.log("Renderizando posts, en este momento se muestra el loading antes del mounting!");
-  
   useEffect(() => {
-    getPosts().then((posts) => setPosts(posts));
-  }, []);
+  getPosts()
+    .then((posts) => setPosts(posts))
+    .catch((err) => {
+      setError(true);
+    });
+}, []);
+
+if (error) {
+  return <div className="alert alert-danger">error fetching data</div>;
+}
 
   if (!posts) {
     return (

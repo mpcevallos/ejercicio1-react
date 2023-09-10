@@ -1,8 +1,12 @@
+import { useUserContext } from "../contexts/user-context";
 import { useState } from "react";
+
 
 // eslint-disable-next-line react/prop-types
 function Post({ createdAt, autor, text, comments, image, }) {
   const [like, setLike] = useState(0);
+  
+  const value = useUserContext();
 
   console.log("Click en el botón de Like");
   
@@ -23,6 +27,7 @@ function Post({ createdAt, autor, text, comments, image, }) {
           <p className="card-text">{text}</p>
           <p className="card-comments"><i className="bi bi-chat-right"></i> {comments}</p>
         </div>
+        <p>{value.foo}</p>
       </div>
     </div>
   );
