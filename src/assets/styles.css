@@ -34,3 +34,7 @@
   opacity: 0.8; /* Ajusta la opacidad según lo desees */
   filter: hue-rotate(80%);
 }
+
+.profile {
+  width: 250px;
+}
