@@ -1,3 +1,8 @@
+
+function searchPost (event) {
+  console.log(event)
+}
+
 function Filters({ search, searchPost }) {
   return ( 
     <div className="container-fluid mt-4">

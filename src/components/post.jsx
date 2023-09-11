@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-function Post({ createdAt, autor, text, comments, image, }) {
-  const [like, setLike] = useState(0);
+function Post({ image, createdAt, autor, text, comments, }) {
+  const [like, setLike] = useState(10);
 
   console.log("Click en el botón de Like");
   
@@ -17,7 +17,7 @@ function Post({ createdAt, autor, text, comments, image, }) {
       }}
     className="btn btn-danger"
     > <i className="bi bi-heart-fill me-2"></i>
-      {like}
+      <>{like}k</>
     </button>
           <p className="card-author"><b>{autor}</b></p>
           <p className="card-text">{text}</p>

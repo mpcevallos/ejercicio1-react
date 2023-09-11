@@ -1,3 +1,7 @@
+function buscar (event) {
+  console.log(event)
+}
+
 function SearchBar() {
   return (
     <div className="container-fluid mt-4">
