@@ -1,5 +1,3 @@
-import data from "./posts.json";
-
 export function getPost() {
   return fetch(
     "https://globalmakermedia.blob.core.windows.net/core/misc/data.json"

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { getPosts } from "../../services/posts-service";
 import Profile from "./profile";
 import PostList from "./postList"; // Importa el componente PostList si no lo has hecho aún
 

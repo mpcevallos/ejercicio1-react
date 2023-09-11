@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPosts } from "/Users/mariapaula/Documents/MasterThreePoints/Modulo-FrontEnd-Frameworks/clase2-reactjs/ejercicio2-react/services/posts-service.js";
+import { getPost } from "../../services/posts-service";
 import Post from "./post";
 import Profile from "./profile";
 
@@ -8,7 +8,7 @@ function PostList({ post, search, profile, showProfile }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-  getPosts()
+  getPost()
     .then((posts) => setPosts(posts))
     .catch((err) => {
       setError(true);
