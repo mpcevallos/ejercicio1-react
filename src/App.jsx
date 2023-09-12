@@ -28,7 +28,7 @@ function App() {
   }
 
   const getPosts = async () => {
-    const apiURL = "https://three-points.herokuapp.com/api/users/6136944fcd79ba24707e2f82";
+    const apiURL = "https://three-points.herokuapp.com/api/users/";
     try {
       const response = await fetch(apiURL, {
         method: "GET",

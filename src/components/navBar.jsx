@@ -3,7 +3,7 @@ import Profile from "./profile";
 import PostList from "./postList"; // Importa el componente PostList si no lo has hecho aún
 
 function NavBar() {
-  const [showProfile, setShowProfile] = useState();
+  const [showProfile, setShowProfile] = useState(false);
   const [showPostList, setShowPostList] = useState("");
 
   console.log("rendering NavBar!");
@@ -11,6 +11,10 @@ function NavBar() {
 const handleClick = () => {
     setShowPostList(!showPostList); 
   };
+
+  const handleProfileClose = () => {
+  setShowProfile(false); // Cambia el estado para indicar que el componente debe cerrarse
+};
 
   return (
     <nav className="navbar bg-body-secondary d-flex container-fluid">
@@ -26,8 +30,9 @@ const handleClick = () => {
           ></i>
 
         </a>
-        {/* {showProfile && <Profile />}
-        {showPostList && <PostList/>} */}
+        {/* {showProfile && <Profile />} */}
+        {showPostList && <PostList/>}
+        {showProfile && <Profile onClose={handleProfileClose} />}
       </div>
     </nav>
   );

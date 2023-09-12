@@ -1,7 +1,5 @@
 export function getPost() {
-  return fetch(
-    "https://globalmakermedia.blob.core.windows.net/core/misc/data.json"
-  )
+  return fetch("https://three-points.herokuapp.com/api/login") // Cambia la URL al servidor intermedio o proxy
     .then((response) => response.json())
     .then((data) => data.episodes);
 }
@@ -12,6 +10,6 @@ export function getUser() {
       resolve({
         name: "John Doe",
       });
-    }, 30000);
+    }, 2000);
   });
 }
