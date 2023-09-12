@@ -26,8 +26,8 @@ const handleClick = () => {
           ></i>
 
         </a>
-        {showProfile && <Profile />}
-        {showPostList && <PostList/>}
+        {/* {showProfile && <Profile />}
+        {showPostList && <PostList/>} */}
       </div>
     </nav>
   );

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getUser } from "/Users/mariapaula/Documents/MasterThreePoints/Modulo-FrontEnd-Frameworks/clase2-reactjs/ejercicio2-react/services/posts-service.js";
+import Login from "../components/login";
 
 const UserContext = createContext();
 
@@ -14,7 +15,9 @@ const [user, setUser] = useState(null);
 
 if (!user) {
   return (
-    <p>Hola</p>
+    <div>
+      <Login/>
+    </div>
   );
 }
 

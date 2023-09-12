@@ -12,6 +12,6 @@ export function getUser() {
       resolve({
         name: "John Doe",
       });
-    }, 500);
+    }, 30000);
   });
 }
