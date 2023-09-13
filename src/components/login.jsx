@@ -6,38 +6,35 @@ function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const apiUrl = "https://three-points.herokuapp.com/api/login";
+  const apiUrl = "https://three-points.herokuapp.com/api/posts";
 
+  const postData = {
+    username,
+    password,
+  };
 
-    const postData = {
-        username,
-        password
-    };
+  const loginHandler = async () => {
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
 
-    const loginHandler = async () => {
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(postData),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-
-                setError(false);
-                props.onLoginComplete(data.token);
-
-            } else {
-                setError(true);
-            }
-
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        // Redirigir al listado de posts
+      } else {
+        console.error("Error al iniciar sesión:", response.status);
+      }
+    } catch (error) {
+      console.error("Error al enviar la petición:", error);
+      setError(true);
+    }
+  };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
@@ -53,8 +50,7 @@ function Login(props) {
           <div className="alert alert-danger">Error al iniciar sesión</div>
         )}
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
+          onSubmit={() => {
             loginHandler();
           }}
         >

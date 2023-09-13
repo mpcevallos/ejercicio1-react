@@ -24,6 +24,7 @@ const handleClick = () => {
           onClick={handleClick}>
             three pics
           </i>
+
           <i
             className="bi bi-person-circle"
             onClick={() => setShowProfile(!showProfile)}

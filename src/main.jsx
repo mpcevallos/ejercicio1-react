@@ -1,12 +1,27 @@
 import ReactDOM from "react-dom/client";
 import UserContextProvider from "/src/contexts/user-context.jsx";
-import { BrowserRouter } from "react-router-dom";
-import Login from "./components/login";
+import PostList from "./components/postList.jsx";
+import Login from "./components/login.jsx";
+import { Link, RouterProvider, createBrowserRouter } from "react-router-dom";
+import Profile from "./components/profile.jsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <PostList />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+   {
+    path: "/profile",
+    element: <Profile/>
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <UserContextProvider>
-      <Login/>
-    </UserContextProvider>
-  </BrowserRouter>
+  <UserContextProvider>
+    <RouterProvider router={router} />
+  </UserContextProvider>
 );
