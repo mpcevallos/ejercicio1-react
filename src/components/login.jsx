@@ -6,7 +6,7 @@ function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const apiUrl = "https://three-points.herokuapp.com/api/posts";
+  const apiUrl = "https://three-points.herokuapp.com/api/login";
 
   const postData = {
     username,
@@ -29,9 +29,12 @@ function Login(props) {
         // Redirigir al listado de posts
       } else {
         console.error("Error al iniciar sesión:", response.status);
+        alert("Usuario autorizado");
       }
     } catch (error) {
       console.error("Error al enviar la petición:", error);
+      alert("Error al enviar la petición. Intentelo más tarde.");
+
       setError(true);
     }
   };
