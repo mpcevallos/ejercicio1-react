@@ -1,7 +1,5 @@
 export function getPost() {
-  return fetch(
-    "https://three-points.herokuapp.com/api/posts"
-  )
+  return fetch("https://three-points.herokuapp.com/api/posts")
     .then((response) => response.json())
     .then((data) => data.episodes);
 }
