@@ -8,35 +8,36 @@ function Login(props) {
 
   const apiUrl = "https://three-points.herokuapp.com/api/login";
 
-  const postData = {
-    username,
-    password,
-  };
 
-  const loginHandler = async () => {
-    try {
-      console.log(username);
-      console.log(password);
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postData),
-      });
+    const postData = {
+        username,
+        password
+    };
 
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
-        // Redirigir al listado de posts
-      } else {
-        console.error("Error al iniciar sesión:", response.status);
-      }
-    } catch (error) {
-      console.error("Error al enviar la petición:", error);
-      setError(true);
-    }
-  };
+    const loginHandler = async () => {
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(postData),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                setError(false);
+                props.onLoginComplete(data.token);
+
+            } else {
+                setError(true);
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">

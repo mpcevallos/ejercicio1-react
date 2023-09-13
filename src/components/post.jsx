@@ -24,7 +24,7 @@ function Post(props) {
               aumentarLikes();
             }}
             className="btn btn-danger"
-            >
+            ><i className="bi bi-heart-fill"></i>
           </button>
           <p className="card-author">
             <b>@{props.autor}</b>
@@ -33,6 +33,8 @@ function Post(props) {
           <p className="card-comments">
             <i className="bi bi-chat-right"></i> {props.comments}
           </p>
+
+          <p>{value.user.name}</p>
         </div>
       </div>
     </div>

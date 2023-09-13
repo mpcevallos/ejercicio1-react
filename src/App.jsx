@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { useEffect, useState } from "react";
 import NavBar from "./components/navBar.jsx";
 import PostList from "./components/postList";
@@ -13,7 +14,7 @@ function App() {
   const profile = {
     avatar: "/src/assets/profile.png",
     username: "john",
-    bio: "whatever",
+    bio: "34, Male, John Doe.",
   }
 
   const [posts, setPosts] = useState([]);
@@ -27,8 +28,13 @@ function App() {
     setShowPosts(false);
   }
 
+  const onLoginComplete =  () => {
+    setShowPosts(true);
+  }
+
+
   const getPosts = async () => {
-    const apiURL = "https://three-points.herokuapp.com/api/users/";
+    const apiURL = "https://three-points.herokuapp.com/api/logins";
     try {
       const response = await fetch(apiURL, {
         method: "GET",
@@ -40,18 +46,23 @@ function App() {
 
       if (response.ok) {
         const data = await response.json();
+        
         console.log(data.token);
+
         localStorage.setItem('token', data.token);
         const tempPosts = [];
         data.map((item) => {
           const nuevoPost = { image: item.image, createAt: item.createAt.slice(0, 10), likes: item.likes, autor: item.autor.name, texto: item.text, comments: item.comments};
           tempPosts.push(nuevoPost);
         });
+
+
         setPosts(tempPosts);
         setPostFiltrados(tempPosts);
       } else {
         console.error("Error al obtener los datos:", response.status);
       }
+      
     } catch (error) {
       console.error("Error:", error);
     }

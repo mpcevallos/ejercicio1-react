@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { getUser } from "/Users/mariapaula/Documents/MasterThreePoints/Modulo-FrontEnd-Frameworks/clase2-reactjs/ejercicio2-react/services/posts-service.js";
 import NavBar from "../components/navBar";
 import PostList from "../components/postList";
+import SearchBar from "../components/searchBar";
 
 const UserContext = createContext();
 
@@ -18,6 +19,7 @@ if (!user) {
   return (
     <div>
        <NavBar/>
+       <SearchBar/>
        <PostList/>
     </div>
   );
