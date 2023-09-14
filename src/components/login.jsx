@@ -8,36 +8,38 @@ function Login(props) {
 
   const apiUrl = "https://three-points.herokuapp.com/api/login";
 
+  const postData = {
+    username,
+    password
+  };
 
-    const postData = {
-        username,
-        password
-    };
+  const loginHandler = async () => {
+    console.log(username);
+    console.log(password);
 
-    const loginHandler = async () => {
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(postData),
-            });
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
 
-            if (response.ok) {
-                const data = await response.json();
+      if (response.ok) {
+        const data = await response.json();
+        
+        setError(false);
+        props.onLoginComplete(data.token);
 
-                setError(false);
-                props.onLoginComplete(data.token);
-
-            } else {
-                setError(true);
-            }
-
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
+      } else {
+        setError(true);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      console.log("Error al realizar la petición.");
+    }
+  };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
@@ -80,9 +82,10 @@ function Login(props) {
               className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
             />
           </div>
-          <button type="submit" className="btn btn-secondary">
+          <button type="submit" className="btn btn-secondary" onClick={loginHandler}>
             Login
           </button>
         </form>

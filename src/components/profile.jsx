@@ -16,7 +16,7 @@ function Profile({ username, bio, showProfile, onClose}) {
           vulputate augue id, feugiat metus. <br />
           Nam faucibus pulvinar bibendum. {bio}
         </p>
-        <button className="btn btn-primary text-center" onClick={handleLogout}>
+        <button className="btn btn-primary text-center">
           Salir
         </button>
       </div>
