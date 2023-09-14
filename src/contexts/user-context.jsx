@@ -7,30 +7,30 @@ import SearchBar from "../components/searchBar";
 const UserContext = createContext();
 
 function UserContextProvider({ children }) {
-const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
- useEffect(() => {
+  useEffect(() => {
     getUser().then((user) => {
-        setUser(user);
+      setUser(user);
     });
-}, []);
+  }, []);
 
-if (!user) {
+  if (!user) {
+    return (
+      <div>
+        <NavBar />
+        <SearchBar />
+        <PostList />
+      </div>
+    );
+  }
+
   return (
-    <div>
-       <NavBar/>
-       <SearchBar/>
-       <PostList/>
-    </div>
-  );
-}
-
-return (
     <UserContext.Provider
       value={{
         user,
       }}
-      >
+    >
       {children}
     </UserContext.Provider>
   );

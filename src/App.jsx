@@ -40,20 +40,20 @@ function App() {
       const response = await fetch(apiURL, {
         method: "GET",
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          'Content-Type': "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
         },
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Posts de API:",data);
+        console.log("Posts de API:", data);
         localStorage.setItem("token", data.token);
         const tempPosts = [];
         data.map((item) => {
           const nuevoPost = {
             image: item.image,
-            createAt: item.createAt.slice(0, 10),
+            createAt: item.createAt,
             likes: item.likes,
             autor: item.autor.name,
             texto: item.text,
@@ -62,10 +62,9 @@ function App() {
           tempPosts.push(nuevoPost);
         });
 
-        console.log("Posts Temp: ",tempPosts);
+        console.log("Posts Temp: ", tempPosts);
         setPosts(tempPosts);
         setPostFiltrados(tempPosts);
-      
       } else {
         console.error("Error al obtener los datos:", response.status);
       }
@@ -90,10 +89,11 @@ function App() {
       <NavBar></NavBar>
       <SearchBar post={posts} setPostFiltrados={setPostFiltrados}></SearchBar>
       {showPosts ? (
-        <PostList 
-        onLogoClick={onLogoClick}
-        onProfileClick={onProfileClick}
-        post={postFiltrados}></PostList>
+        <PostList
+          onLogoClick={onLogoClick}
+          onProfileClick={onProfileClick}
+          post={postFiltrados}
+        ></PostList>
       ) : (
         <Profile
           avatar={profile.avatar}

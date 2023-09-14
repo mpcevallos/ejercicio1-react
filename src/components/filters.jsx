@@ -1,5 +1,5 @@
 function Filters({ search, searchPost }) {
-  return ( 
+  return (
     <div className="container-fluid mt-4">
       <nav className="navbar">
         <div className="container">

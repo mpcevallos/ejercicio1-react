@@ -1,9 +1,8 @@
 import avatar from "/src/assets/profile.png";
 
-function Profile({ username, bio, showProfile, onClose}) {
-
+function Profile({ username, bio, showProfile, onClose }) {
   const handleLogout = () => {
-    onClose(); 
+    onClose();
   };
 
   return (
@@ -16,7 +15,7 @@ function Profile({ username, bio, showProfile, onClose}) {
           vulputate augue id, feugiat metus. <br />
           Nam faucibus pulvinar bibendum. {bio}
         </p>
-        <button className="btn btn-primary text-center">
+        <button className="btn btn-primary text-center" onClick={handleLogout}>
           Salir
         </button>
       </div>

@@ -9,7 +9,7 @@ function Post(props) {
 
   const aumentarLikes = () => {
     setLikes(likes + 1);
-  }
+  };
   console.log("Click en el botón de Like");
 
   return (
@@ -24,7 +24,8 @@ function Post(props) {
               aumentarLikes();
             }}
             className="btn btn-danger"
-            ><i className="bi bi-heart-fill"></i>
+          >
+            <i className="bi bi-heart-fill"></i>
           </button>
           <p className="card-author">
             <b>@{props.autor}</b>

@@ -10,7 +10,7 @@ function Login(props) {
 
   const postData = {
     username,
-    password
+    password,
   };
 
   const loginHandler = async () => {
@@ -28,10 +28,9 @@ function Login(props) {
 
       if (response.ok) {
         const data = await response.json();
-        
+
         setError(false);
         props.onLoginComplete(data.token);
-
       } else {
         setError(true);
       }
@@ -85,7 +84,11 @@ function Login(props) {
               autoComplete="current-password"
             />
           </div>
-          <button type="submit" className="btn btn-secondary" onClick={loginHandler}>
+          <button
+            type="submit"
+            className="btn btn-secondary"
+            onClick={loginHandler}
+          >
             Login
           </button>
         </form>

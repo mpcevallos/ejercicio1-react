@@ -4,20 +4,20 @@ import Post from "./post";
 import Profile from "./profile";
 
 function PostList({ post, search, profile, showProfile }) {
-  const [posts, setPosts] = useState(null); 
+  const [posts, setPosts] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-  getPost()
-    .then((posts) => setPosts(posts))
-    .catch((err) => {
-      setError(true);
-    });
-}, []);
+    getPost()
+      .then((posts) => setPosts(posts))
+      .catch((err) => {
+        setError(true);
+      });
+  }, []);
 
-if (error) {
-  return <div className="alert alert-danger">error fetching data</div>;
-}
+  if (error) {
+    return <div className="alert alert-danger">error fetching data</div>;
+  }
 
   if (!posts) {
     return (
@@ -27,21 +27,20 @@ if (error) {
       </div>
     );
   }
-  
+
   return (
     <div className="container-fluid bg-body-secondary me-4 pt-4 pb-5">
       <div className="row d-flex m-2">
-        {posts
-          .map((post, i) => (
-            <Post
-              key={i}
-              createdAt={post.createdAt}
-              autor={post.autor}
-              text={post.text}
-              comments={post.comments}
-              image={post.image}
-            />
-          ))}
+        {posts.map((post, i) => (
+          <Post
+            key={i}
+            createdAt={post.createdAt}
+            autor={post.autor}
+            text={post.text}
+            comments={post.comments}
+            image={post.image}
+          />
+        ))}
       </div>
       {showProfile && <Profile />}
     </div>
