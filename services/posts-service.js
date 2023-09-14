@@ -1,7 +1,7 @@
 export function getPost() {
-  return fetch("https://three-points.herokuapp.com/api/posts") // Cambia la URL al servidor intermedio o proxy
+  return fetch("https://three-points.herokuapp.com/api/login")
     .then((response) => response.json())
-    .then((data) => data.episodes);
+    .then((data) => data.token);
 }
 
 export function getUser() {
@@ -10,6 +10,6 @@ export function getUser() {
       resolve({
         name: "John Doe",
       });
-    }, 4000);
+    }, 5000);
   });
 }

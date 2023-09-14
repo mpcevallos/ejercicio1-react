@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Profile from "./profile";
-import PostList from "./postList"; // Importa el componente PostList si no lo has hecho aún
+import PostList from "./postList";
 
 function NavBar() {
   const [showProfile, setShowProfile] = useState(false);
@@ -8,20 +8,19 @@ function NavBar() {
 
   console.log("rendering NavBar!");
 
-const handleClick = () => {
-    setShowPostList(!showPostList); 
+  const handleClick = () => {
+    setShowPostList(!showPostList);
   };
 
   const handleProfileClose = () => {
-  setShowProfile(false); // Cambia el estado para indicar que el componente debe cerrarse
-};
+    setShowProfile(false);
+  };
 
   return (
     <nav className="navbar bg-body-secondary d-flex container-fluid">
       <div className="container">
         <a className="navbar-brand">
-          <i className="bi bi-lightning-charge-fill m-2" 
-          onClick={handleClick}>
+          <i className="bi bi-lightning-charge-fill m-2" onClick={handleClick}>
             three pics
           </i>
 
@@ -29,10 +28,9 @@ const handleClick = () => {
             className="bi bi-person-circle"
             onClick={() => setShowProfile(!showProfile)}
           ></i>
-
         </a>
         {/* {showProfile && <Profile />} */}
-        {showPostList && <PostList/>}
+        {showPostList && <PostList />}
         {showProfile && <Profile onClose={handleProfileClose} />}
       </div>
     </nav>

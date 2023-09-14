@@ -1,5 +1,6 @@
-import threepoints from "/src/assets/threepoints.png";
 import { useState } from "react";
+import threepoints from "/src/assets/threepoints.png";
+import axios from "axios";
 
 function Login(props) {
   const [error, setError] = useState(false);
@@ -13,29 +14,24 @@ function Login(props) {
     password,
   };
 
-  const loginHandler = async () => {
+  const loginHandler = async (e) => {
     try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
+      const response = await axios.post(apiUrl, postData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(postData),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
-        // Redirigir al listado de posts
+      if (response.status === 200) {
+        const data = response.data;
+        e.preventDefault();
+        setError(false);
+        props.onLoginComplete(data.token);
       } else {
-        console.error("Error al iniciar sesión:", response.status);
-        alert("Usuario autorizado");
+        setError(true);
       }
     } catch (error) {
-      console.error("Error al enviar la petición:", error);
-      alert("Error al enviar la petición. Intentelo más tarde.");
-
-      setError(true);
+      console.error("Error:", error);
     }
   };
 
