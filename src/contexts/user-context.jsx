@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getUser } from "/Users/mariapaula/Documents/MasterThreePoints/Modulo-FrontEnd-Frameworks/clase2-reactjs/ejercicio2-react/services/posts-service.js";
+import { getUser } from "../../services/posts-service";
 import NavBar from "../components/navBar";
 import PostList from "../components/postList";
 import SearchBar from "../components/searchBar";
