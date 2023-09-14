@@ -33,45 +33,35 @@ function App() {
   };
 
   const getPosts = async () => {
-    const apiURL = "https://three-points.herokuapp.com/api/posts";
+    const apiUrl = 'https://three-points.herokuapp.com/api/posts';
     try {
-      const response = await fetch(apiURL, {
-        method: "GET",
+      const response = await fetch(apiUrl, {
+        method: 'GET',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json",
-        },
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        }
       });
 
       if (response.ok) {
-        const data = await response.json();
-
-        console.log(data.token);
-
-        localStorage.setItem("token", data.token);
+        const data = await response.json();        
+        //console.log("Posts de API: ", data);
         const tempPosts = [];
         data.map((item) => {
-          const nuevoPost = {
-            image: item.image,
-            createAt: item.createAt.slice(0, 10),
-            likes: item.likes,
-            autor: item.autor.name,
-            texto: item.text,
-            comments: item.comments,
-          };
+          const nuevoPost = { image: item.image, createdAt: item.createdAt.slice(0, 10), likes:item.likes, autor: item.author.name, texto: item.text, comments: item.comments.length };
           tempPosts.push(nuevoPost);
+          
         });
-
+        //console.log("Posts Temp: ", tempPosts);
         setPosts(tempPosts);
-        setPostFiltrados(tempPosts);
-      } else {
-        console.error("Error al obtener los datos:", response.status);
+        setPostsFiltrados(tempPosts);
       }
+
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     }
   };
-
+  
   useEffect(() => {
     if (localStorage.getItem("token")) {
       console.log("Si hay token");

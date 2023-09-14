@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import UserContextProvider from "/src/contexts/user-context.jsx";
 import PostList from "./components/postList.jsx";
 import Login from "./components/login.jsx";
-import { Link, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Profile from "./components/profile.jsx";
 
 const router = createBrowserRouter([
