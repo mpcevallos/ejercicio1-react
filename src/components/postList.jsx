@@ -3,10 +3,12 @@ import { getPosts } from "/Users/mariapaula/Documents/MasterThreePoints/Modulo-F
 import Post from "./post";
 
 function PostList({ post, search, profile, showProfile }) {
-  const [posts, setPosts] = useState(null); 
+  const [posts, setPosts] = useState(null);
 
-  console.log("Renderizando posts, en este momento se muestra el loading antes del mounting!");
-  
+  console.log(
+    "Renderizando posts, en este momento se muestra el loading antes del mounting!"
+  );
+
   useEffect(() => {
     getPosts().then((posts) => setPosts(posts));
   }, []);
@@ -19,13 +21,13 @@ function PostList({ post, search, profile, showProfile }) {
       </div>
     );
   }
-  
+
   return (
     <div className="container-fluid bg-body-secondary me-4 pt-4 pb-5">
       <div className="row d-flex m-2">
         {posts
-        // .filter((e) => e.name.toLowerCase().includes(search.toLowerCase()))
-        .map((post, i) => (
+          // .filter((e) => e.name.toLowerCase().includes(search.toLowerCase()))
+          .map((post, i) => (
             <Post
               key={i}
               createdAt={post.createdAt}
