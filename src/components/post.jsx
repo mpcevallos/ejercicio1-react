@@ -2,7 +2,7 @@ import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 function Post({ image, createdAt, autor, text, comments }) {
-  const [like, setLike] = useState(10);
+  const [like, setLike] = useState(0);
 
   console.log("Click en el botón de Like");
 
