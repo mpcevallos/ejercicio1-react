@@ -20,7 +20,7 @@ function UserContextProvider({ children }) {
       <div>
         <NavBar />
         <SearchBar />
-        <PostList />
+        <PostList/>
       </div>
     );
   }

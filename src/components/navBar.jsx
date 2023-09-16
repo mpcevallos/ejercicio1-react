@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Profile from "./profile";
 import PostList from "./postList";
+import { Link } from "react-router-dom";
+
 
 function NavBar() {
   const [showProfile, setShowProfile] = useState(false);
@@ -23,7 +25,6 @@ function NavBar() {
           <i className="bi bi-lightning-charge-fill m-2" onClick={handleClick}>
             three pics
           </i>
-
           <i
             className="bi bi-person-circle"
             onClick={() => setShowProfile(!showProfile)}

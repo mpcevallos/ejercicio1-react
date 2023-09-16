@@ -1,6 +1,7 @@
 import { useState } from "react";
 import threepoints from "/src/assets/threepoints.png";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Login(props) {
   const [error, setError] = useState(false);
@@ -10,8 +11,8 @@ function Login(props) {
   const apiUrl = "https://three-points.herokuapp.com/api/login";
 
   const postData = {
-    username,
-    password,
+    username: "john",
+    password: "P4ssW0rd!#",
   };
 
   const loginHandler = async (e) => {
@@ -37,6 +38,12 @@ function Login(props) {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
+      <div>
+        <Link to="/">Home</Link>
+      </div>
+      <div>
+        <Link to="/profile">Profile</Link>
+      </div>
       <div className="text-center">
         <img
           className="mb-2"
@@ -44,6 +51,7 @@ function Login(props) {
           alt="Logo de ThreePoints"
           style={{ width: "200px" }}
         />
+
         <h3>Login</h3>
         {error && (
           <div className="alert alert-danger">Error al iniciar sesión</div>
