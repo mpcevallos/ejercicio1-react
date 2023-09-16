@@ -35,7 +35,6 @@ function Post(props) {
             <i className="bi bi-chat-right"></i> {props.comments}
           </p>
 
-          <p>{value.user.name}</p>
         </div>
       </div>
     </div>

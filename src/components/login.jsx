@@ -9,13 +9,11 @@ function Login(props) {
   const apiUrl = "https://three-points.herokuapp.com/api/login";
 
   const postData = {
-    username,
-    password,
+    username: "john",
+    password: "P4ssW0rd!#",
   };
 
   const loginHandler = async () => {
-    console.log(username);
-    console.log(password);
 
     try {
       const response = await fetch(apiUrl, {
@@ -30,7 +28,8 @@ function Login(props) {
         const data = await response.json();
 
         setError(false);
-        props.onLoginComplete(data.token);
+        console.log(data.token);
+        // props.onLoginComplete(data.token);
       } else {
         setError(true);
       }

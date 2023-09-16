@@ -29,11 +29,24 @@ function App() {
     setShowPosts(false);
   };
 
-  const onLoginComplete = (token) => {
-    localStorage.setItem("token", token);
-    setIsLogin(true);
+ const onLoginComplete = (token) => {
+  localStorage.setItem("token", token);
+  setIsLogin(true);
+};
+
+const handleLoginComplete = (token) => {
+  setIsLogin(true);
+};
+
+ const postData = {
+    username: "john",
+    password: "P4ssW0rd!#",
   };
 
+  const loginHandler = async () => {
+    console.log(username);
+    console.log(password);
+  
   const getPosts = async () => {
     const apiURL = "https://three-points.herokuapp.com/api/posts";
     try {
@@ -43,6 +56,7 @@ function App() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(postData),
       });
 
       if (response.ok) {
@@ -87,9 +101,9 @@ function App() {
   return isLogin ? (
     <>
       <NavBar></NavBar>
-      <SearchBar post={posts} setPostFiltrados={setPostFiltrados}></SearchBar>
+      <SearchBar post={posts} search={setSearch} setPostFiltrados={setPostFiltrados}></SearchBar>
       {showPosts ? (
-        <PostList
+      <PostList
           onLogoClick={onLogoClick}
           onProfileClick={onProfileClick}
           post={postFiltrados}
@@ -103,7 +117,8 @@ function App() {
       )}
     </>
   ) : (
-    <Login onLoginComplete={onLoginComplete}></Login>
+    <Login onLoginComplete={handleLoginComplete} />
+
   );
 }
 

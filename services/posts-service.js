@@ -1,7 +1,7 @@
 export function getPost() {
   return fetch("https://three-points.herokuapp.com/api/posts")
     .then((response) => response.json())
-    .then((data) => data.token);
+    .then((data) => data.posts);
 }
 
 export function getUser() {
@@ -10,6 +10,6 @@ export function getUser() {
       resolve({
         name: "John Doe",
       });
-    }, 5000);
+    });
   });
 }

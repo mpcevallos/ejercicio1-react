@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getUser } from "/services/posts-service.js";
+import Login from "../components/login";
 import NavBar from "../components/navBar";
-import PostList from "../components/postList";
 import SearchBar from "../components/searchBar";
 
 const UserContext = createContext();
@@ -18,9 +18,9 @@ function UserContextProvider({ children }) {
   if (!user) {
     return (
       <div>
-        <NavBar />
-        <SearchBar />
-        <PostList />
+       <NavBar/>
+       <SearchBar/>
+       <Login/>
       </div>
     );
   }
