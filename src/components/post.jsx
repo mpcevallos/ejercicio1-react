@@ -1,11 +1,11 @@
-import { useUserContext } from "../contexts/user-context";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 // eslint-disable-next-line react/prop-types
 function Post(props) {
   const [likes, setLikes] = useState(props.likes);
 
-  const value = useUserContext();
+  // const value = useUserContext();
 
   const aumentarLikes = () => {
     setLikes(likes + 1);
@@ -20,7 +20,6 @@ function Post(props) {
           <h5 className="card-time">{props.createdAt}</h5>
           <button
             onClick={() => {
-              setLikes(likes + 1);
               aumentarLikes();
             }}
             className="btn btn-danger"
@@ -28,11 +27,11 @@ function Post(props) {
             <i className="bi bi-heart-fill"></i>
           </button>
           <p className="card-author">
-            <b>@{props.autor}</b>
+            <b>@{props.author}</b>
           </p>
           <p className="card-text">{props.text}</p>
           <p className="card-comments">
-            <i className="bi bi-chat-right"></i> {props.comments}
+            {/* <i className="bi bi-chat-right"></i> {props.comments} */}
           </p>
 
         </div>
@@ -40,5 +39,14 @@ function Post(props) {
     </div>
   );
 }
+
+Post.propTypes = {
+  likes: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
+};
 
 export default Post;

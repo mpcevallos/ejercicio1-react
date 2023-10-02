@@ -29,7 +29,7 @@ function Login(props) {
 
         setError(false);
         console.log(data.token);
-        // props.onLoginComplete(data.token);
+        props.onLoginComplete(data.token);
       } else {
         setError(true);
       }

@@ -3,7 +3,7 @@ import Profile from "./profile";
 import PostList from "./postList"; // Importa el componente PostList si no lo has hecho aún
 import { Link } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
   const [showProfile, setShowProfile] = useState(false);
   const [showPostList, setShowPostList] = useState("");
 
