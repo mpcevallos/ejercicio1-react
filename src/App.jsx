@@ -1,19 +1,25 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import NavBar from "./components/navBar.jsx";
 import PostList from "./components/postList";
 import Filters from "./components/filters";
+import Profile from "./components/profile";
 
 function App() {
   console.log("rendering App");
   const [search, setSearch] = useState("");
+  const [showProfile, setShowProfile] = useState(false);
 
-  const showProfile = (showProfile) => {
-    showProfile(showProfile);
+  const handlePostListClick = () => {
+    setShowProfile(false);
   };
 
-  const searchPost = (text) => {
-    console.log("Search post", text);
-    setSearch(text);
+  const handleProfileClick = () => {
+    setShowProfile(true);
+  };
+
+  const searchPost = (event) => {
+    const searchText = event.target.value;
+    setSearch(searchText);
   };
 
   return (
@@ -23,13 +29,16 @@ function App() {
         <h5>Descripción</h5>
         <h4>
           El objetivo del ejercicio es la construcción de una aplicación web
-          React.js con diferentes components que tenga como resultado la
+          React.js con diferentes componentes que tenga como resultado la
           siguiente interfaz de usuario (Mobile first):
         </h4>
         <br />
-        <NavBar showProfile={showProfile} />
+        <NavBar
+          handlePostListClick={handlePostListClick}
+          handleProfileClick={handleProfileClick}
+        />
         <Filters search={search} searchPost={searchPost} />
-        <PostList search={search} showProfile={showProfile} />
+        {showProfile ? <Profile /> : <PostList search={search} />}
       </div>
     </>
   );

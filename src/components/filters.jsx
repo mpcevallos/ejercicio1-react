@@ -1,8 +1,12 @@
-function searchPost(event) {
-  console.log(event);
-}
+import { useState } from "react";
 
 function Filters({ search, searchPost }) {
+ const handleSearchChange = (event) => {
+  const searchText = event.target.value;
+  console.log(searchText); // Imprime el valor del input de búsqueda
+  searchPost(searchText);
+};
+
   return (
     <div className="container-fluid mt-4">
       <nav className="navbar">
@@ -14,7 +18,7 @@ function Filters({ search, searchPost }) {
               type="search"
               placeholder="Search"
               aria-label="Search"
-              onChange={(e) => searchPost(e.target.value)}
+              onChange={handleSearchChange}
               value={search}
             />
           </form>

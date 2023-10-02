@@ -1,32 +1,25 @@
-import { useState } from "react";
-import { getPosts } from "../../services/posts-service";
+import React, { useState } from "react";
 import Profile from "./profile";
-import PostList from "./postList"; // Importa el componente PostList si no lo has hecho aún
+import PostList from "./postList";
 
-function NavBar() {
-  const [showProfile, setShowProfile] = useState();
-  const [showPostList, setShowPostList] = useState("");
-
-  console.log("rendering NavBar!");
-
-  const handleClick = () => {
-    setShowPostList(!showPostList);
-  };
+function NavBar({ handlePostListClick, handleProfileClick }) {
+  const [showProfile, setShowProfile] = useState(false);
 
   return (
     <nav className="navbar bg-body-secondary d-flex container-fluid">
       <div className="container">
         <a className="navbar-brand">
-          <i className="bi bi-lightning-charge-fill m-2" onClick={handleClick}>
+          <i
+            className="bi bi-lightning-charge-fill m-2"
+            onClick={handlePostListClick}
+          >
             three pics
           </i>
           <i
             className="bi bi-person-circle"
-            onClick={() => setShowProfile(!showProfile)}
+            onClick={handleProfileClick}
           ></i>
         </a>
-        {showProfile && <Profile />}
-        {showPostList && <PostList />}
       </div>
     </nav>
   );
