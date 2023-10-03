@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Login from "./components/login";
 import PostList from "./components/postList";
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [posts, setPosts] = useState([]);
-  
-  const onLoginComplete = (token) => {
-    setToken(token);
-  }
+
+   const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    console.log("verificando token: " + token);
+    const posts = JSON.parse(localStorage.getItem('authorization'));
+    if (posts) {
+      setToken(posts);
+    }
+  }, [token]);
+
+  const onLoginComplete = (error, llave) => {
+    if (error) {
+      localStorage.clear();
+      setToken(null);
+      //setError(error)
+    }
+    //setError(error)
+    setToken(llave);
+  };
 
   return (
   <div>

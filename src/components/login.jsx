@@ -1,20 +1,21 @@
 import threepoints from "/src/assets/threepoints.png";
 import { useState } from "react";
 
-function Login(props) {
-  const [error, setError] = useState(false);
+function Login( { onLoginComplete }) {
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const apiUrl = "https://three-points.herokuapp.com/api/login";
 
   const postData = {
-    username: "john",
-    password: "P4ssW0rd!#",
+    username,
+    password
   };
 
   const loginHandler = async () => {
-
+  
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -26,11 +27,16 @@ function Login(props) {
 
       if (response.ok) {
         const data = await response.json();
-
         setError(false);
         console.log(data.token);
-        props.onLoginComplete(data.token);
+        const key = localStorage.setItem(
+          "token",
+          JSON.stringify(data.token)
+          );
+          onLoginComplete(false, key);
       } else {
+        console.log(response.status);
+        onLoginComplete(true, null);
         setError(true);
       }
     } catch (error) {
@@ -66,8 +72,9 @@ function Login(props) {
               type="text"
               id="username"
               className="form-control"
-              value={username}
               onChange={(e) => setUsername(e.target.value)}
+              value={username}
+              placeholder="john@email.com"
             />
           </div>
           <div className="mb-3">
@@ -81,6 +88,7 @@ function Login(props) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
+              placeholder="********"
             />
           </div>
           <button

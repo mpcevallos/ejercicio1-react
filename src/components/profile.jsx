@@ -50,6 +50,7 @@ function Profile({ avatar, username, bio, showProfile, onClose}) {
           Nam faucibus pulvinar bibendum. {bio}
         </p>
         <button className="btn btn-primary text-center" onClick={handleLogout} >
+        {/* <button className="btn btn-primary text-center" onClick={() => onLogOut(true)} ></button> */}
           Salir
         </button>
       </div>

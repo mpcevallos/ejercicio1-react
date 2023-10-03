@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Profile from "./profile";
-import PostList from "./postList"; // Importa el componente PostList si no lo has hecho aún
+import PostList from "./postList"; 
 import { Link } from "react-router-dom";
 
-function NavBar(props) {
+function NavBar() {
   const [showProfile, setShowProfile] = useState(false);
   const [showPostList, setShowPostList] = useState("");
 
