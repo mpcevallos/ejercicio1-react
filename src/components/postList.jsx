@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { getPosts } from "/Users/mariapaula/Documents/MasterThreePoints/Modulo-FrontEnd-Frameworks/clase2-reactjs/ejercicio2-react/services/posts-service.js";
 import Post from "./post";
 
-function PostList({ post, search, profile, showProfile }) {
+function PostList({ post, search, profile, showProfile, author, comments, createdAt }) {
   const [posts, setPosts] = useState(null);
 
   console.log(
@@ -26,8 +27,13 @@ function PostList({ post, search, profile, showProfile }) {
     <div className="container-fluid bg-body-secondary me-4 pt-4 pb-5">
       <div className="row d-flex m-2">
         {posts
-          // .filter((e) => e.name.toLowerCase().includes(search.toLowerCase()))
-          .map((post, i) => (
+            .filter((post) => 
+              (post.createdAt?.toLowerCase().includes(search.toLowerCase()) ||
+              post.autor?.toLowerCase().includes(search.toLowerCase()) ||
+              post.text?.toLowerCase().includes(search.toLowerCase()) ||
+              post.comments?.toLowerCase().includes(search.toLowerCase()))
+            )
+            .map((post, i) => (
             <Post
               key={i}
               createdAt={post.createdAt}
@@ -43,3 +49,4 @@ function PostList({ post, search, profile, showProfile }) {
 }
 
 export default PostList;
+

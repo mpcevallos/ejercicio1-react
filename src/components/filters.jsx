@@ -1,11 +1,9 @@
 import { useState } from "react";
 
-function Filters({ search, searchPost }) {
- const handleSearchChange = (event) => {
-  const searchText = event.target.value;
-  console.log(searchText); // Imprime el valor del input de búsqueda
-  searchPost(searchText);
-};
+function Filters({ search, setSearch }) {
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
 
   return (
     <div className="container-fluid mt-4">
@@ -13,11 +11,12 @@ function Filters({ search, searchPost }) {
         <div className="container">
           <form className="container-fluid" role="search">
             <input
+              type="text"
               name="search"
               className="form-control me-2 mb-5 w-100"
-              type="search"
               placeholder="Search"
-              aria-label="Search"
+              // aria-label="Search"
+              // onChange={(e) => (e.target.value)}
               onChange={handleSearchChange}
               value={search}
             />
