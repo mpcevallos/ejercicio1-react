@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import NavBar from "./components/navBar.jsx";
 import PostList from "./components/postList";
 import Filters from "./components/filters";
@@ -9,9 +9,9 @@ function App() {
   const [search, setSearch] = useState("");
   const [showProfile, setShowProfile] = useState(false);
 
- const handleSearchChange = (event) => {
-    setSearch(event.target.value);
-  };
+//  const handleSearchChange = (event) => {
+//     setSearch(event.target.value);
+//   };
 
   const handlePostListClick = () => {
     setShowProfile(false);
