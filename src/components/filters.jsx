@@ -1,4 +1,10 @@
-function Filters({ search, searchPost }) {
+/* eslint-disable react/prop-types */
+
+function Filters({ search, setSearch }) {
+ const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
   return (
     <div className="container-fluid mt-4">
       <nav className="navbar">
@@ -10,7 +16,7 @@ function Filters({ search, searchPost }) {
               type="search"
               placeholder="Search"
               aria-label="Search"
-              onChange={(e) => searchPost(e.target.value)}
+              onChange={handleSearchChange}
               value={search}
             />
           </form>

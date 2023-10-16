@@ -6,7 +6,7 @@ import { getPost } from "../../services/posts-service";
 import Post from "./post";
 import Profile from "./profile";
 
-function PostList({ post, search, profile, showProfile, autor, image }) {
+function PostList({ post, search, profile, showProfile, autor, image, comments, likes, text, createdAt, id}) {
   const [posts, setPosts] = useState("");
   const [error, setError] = useState("");
   const [showPosts, setShowPosts] = useState(true);
@@ -14,7 +14,8 @@ function PostList({ post, search, profile, showProfile, autor, image }) {
   useEffect(() => {
     getPost()
       .then((showPosts) => setPosts(showPosts))
-      .catch((err) => {
+      .catch((error) => {
+        console.log(error);
         setError(true);
       });
   }, [localStorage.getItem("token")]);
@@ -39,18 +40,18 @@ function PostList({ post, search, profile, showProfile, autor, image }) {
       <div className="row d-flex m-2">
         {posts
           // .filter((e) => e.name.toLowerCase().includes(search.toLowerCase()))
-          .map((post, i) => (
+          .map((post) => (
             <Post
-              key={i}
+              key={post.id} 
+              image={post.image}
               createdAt={post.createdAt}
-              autor={post.autor}
+              likes={post.likes}
+              autor={post.author} 
               text={post.text}
               comments={post.comments}
-              image={post.image}
             />
           ))}
       </div>
-      {showProfile && <Profile />}
     </div>
   );
 }
@@ -58,10 +59,12 @@ function PostList({ post, search, profile, showProfile, autor, image }) {
 Post.propTypes = {
   key: PropTypes.number.isRequired,
   createdAt: PropTypes.string.isRequired,
-  autor: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  likes: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default PostList;

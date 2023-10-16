@@ -1,9 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 import { getUser } from "/services/posts-service.js";
-import NavBar from "../components/navBar";
-import SearchBar from "../components/searchBar";
-import App from "../App";
 
 const UserContext = createContext();
 
@@ -15,16 +12,6 @@ function UserContextProvider({ children }) {
       setUser(user);
     });
   }, []);
-
-  if (!user) {
-    return (
-      <div>
-       <NavBar/>
-       <SearchBar/>
-       <App />
-      </div>
-    );
-  }
 
   return (
     <UserContext.Provider

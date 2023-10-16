@@ -1,7 +1,14 @@
 export async function getPost() {
-  let token = localStorage.getItem("token");
-  console.log("Token:", token); // Add this line to print the token value
+  // console.log("Token:", token); // Add this line to print the token value
   try {
+    let token = localStorage.getItem("token");
+
+    token = token.replace(/^"|"$/g, "");
+
+    if (!token) {
+      throw new Error("No hay token en el localStorage");
+    }
+
     const url = "https://three-points.herokuapp.com/api/posts";
     const response = await fetch(url, {
       method: "GET",
@@ -15,13 +22,16 @@ export async function getPost() {
       return data;
     } else if (response.status === 401) {
       // If the response status is 401 (Unauthorized), try to refresh the token
-      const refreshResponse = await fetch("https://authentication-server.com/refresh", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const refreshResponse = await fetch(
+        "https://authentication-server.com/refresh",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (refreshResponse.ok) {
         // If the refresh request is successful, update the token and retry the original request
         const { access_token } = await refreshResponse.json();
@@ -56,7 +66,7 @@ export function getUser() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
-        name: "John Doe",
+        name: "John",
       });
     }, 5000);
   });
@@ -78,7 +88,20 @@ export async function getPosts() {
 
     if (response.ok) {
       const data = await response.json();
-      return data;
+      const tempPosts = [];
+      data.map((item) => {
+        const nuevoPost = {
+          id: item.id,
+          image: item.image,
+          createdAt: item.createdAt.slice(0, 10),
+          likes: item.likes,
+          autor: item.author,
+          text: item.text,
+          comments: item.comments.length,
+        };
+        tempPosts.push(nuevoPost);
+      });
+      return tempPosts;
     } else {
       console.error("Error al obtener los posts:", response.statusText);
       throw new Error("Error al obtener los posts");

@@ -1,37 +1,23 @@
 import { useState } from "react";
-import Profile from "./profile";
-import PostList from "./postList"; 
-import { Link } from "react-router-dom";
 
-function NavBar() {
+function NavBar({ handlePostListClick, handleProfileClick }) {
   const [showProfile, setShowProfile] = useState(false);
-  const [showPostList, setShowPostList] = useState("");
-
-  console.log("rendering NavBar!");
-
-  const handleClick = () => {
-    setShowPostList(!showPostList);
-  };
-
-  const handleProfileClose = () => {
-    setShowProfile(false);
-  };
 
   return (
     <nav className="navbar bg-body-secondary d-flex container-fluid">
       <div className="container">
         <a className="navbar-brand">
-          <i className="bi bi-lightning-charge-fill m-2" onClick={handleClick}>
+          <i
+            className="bi bi-lightning-charge-fill m-2"
+            onClick={handlePostListClick}
+          >
             three pics
           </i>
           <i
             className="bi bi-person-circle"
-            onClick={() => setShowProfile(!showProfile)}
+            onClick={handleProfileClick}
           ></i>
         </a>
-        {/* {showProfile && <Profile />} */}
-        {showPostList && <PostList />}
-        {showProfile && <Profile onClose={handleProfileClose} />}
       </div>
     </nav>
   );

@@ -1,8 +1,8 @@
 import threepoints from "/src/assets/threepoints.png";
 import { useState } from "react";
+import { getPosts } from "/services/posts-service.js";
 
-function Login( { onLoginComplete }) {
-
+function Login({ onLoginComplete }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -11,11 +11,10 @@ function Login( { onLoginComplete }) {
 
   const postData = {
     username,
-    password
+    password,
   };
 
   const loginHandler = async () => {
-  
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -29,19 +28,29 @@ function Login( { onLoginComplete }) {
         const data = await response.json();
         setError(false);
         console.log(data.token);
-        const key = localStorage.setItem(
-          "token",
-          JSON.stringify(data.token)
-          );
-          onLoginComplete(false, key);
+        const token = data.token;
+        localStorage.setItem("token", token);
+        onLoginComplete(false, token);
+
+        // Después de obtener el token, obtén los posts
+        const posts = await getPosts(); // Esto asume que getPost devuelve los posts
+        console.log("Posts obtenidos:", posts);
+
       } else {
         console.log(response.status);
-        onLoginComplete(true, null);
         setError(true);
+        onLoginComplete(true, null);
+
+        // Mostrar una alerta
+        alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
       }
     } catch (error) {
       console.error("Error:", error);
+      setError(true);
       console.log("Error al realizar la petición.");
+
+      // Mostrar una alerta
+      console.alert('Hubo un error al procesar tu solicitud. Por favor, inténtalo de nuevo más tarde.');
     }
   };
 
@@ -74,7 +83,8 @@ function Login( { onLoginComplete }) {
               className="form-control"
               onChange={(e) => setUsername(e.target.value)}
               value={username}
-              placeholder="john@email.com"
+              autoComplete="john"
+              placeholder="john"
             />
           </div>
           <div className="mb-3">
